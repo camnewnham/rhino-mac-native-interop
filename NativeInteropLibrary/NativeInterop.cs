@@ -23,12 +23,18 @@ namespace NativeInteropTest
             }
         }
 
-        public DecodeResult TestNativeLibraryDecode()
+        public static byte[] LoadSampleDrc()
         {
+
             var folder = Path.GetDirectoryName(System.Reflection.Assembly.GetAssembly(typeof(NativeInterop)).Location);
             var file = System.IO.Path.Combine(folder, "sample.drc");
             var data = File.ReadAllBytes(file);
-            return TestNativeLibraryDecode(data);
+            return data;
+        }
+
+        public DecodeResult TestNativeLibraryDecode()
+        {
+            return TestNativeLibraryDecode(LoadSampleDrc());
         }
 
         public DecodeResult TestNativeLibraryDecode(byte[] data)
